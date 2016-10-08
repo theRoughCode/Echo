@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 /**
  * Adapter to bind a ToDoItem List to a view
@@ -45,10 +46,12 @@ public class ToDoItemAdapter extends ArrayAdapter<ToDoItem> {
         }
 
         row.setTag(currentItem);
-        final CheckBox checkBox = (CheckBox) row.findViewById(R.id.checkToDoItem);
-        checkBox.setText(currentItem.getText());
+        final CheckBox checkBox = (CheckBox) row.findViewById(R.id.UID);
+        checkBox.setText(currentItem.getUID());
         checkBox.setChecked(false);
         checkBox.setEnabled(true);
+        final TextView textView = (TextView) row.findViewById(R.id.GPS);
+        textView.setText(currentItem.getGPS());
 
         checkBox.setOnClickListener(new View.OnClickListener() {
 

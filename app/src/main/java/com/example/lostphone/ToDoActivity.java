@@ -125,7 +125,7 @@ public class ToDoActivity extends Activity {
             mTextNewToDo2 = (EditText) findViewById(R.id.textNewToDo2);
 
             // Create an adapter to bind the items with the view
-            mAdapter = new ToDoItemAdapter(this, R.layout.row_list_to_do);
+           // mAdapter = new ToDoItemAdapter(this, R.layout.row_list_to_do);
             ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
             listViewToDo.setAdapter(mAdapter);
 
@@ -167,7 +167,6 @@ public class ToDoActivity extends Activity {
      *            The item to mark
      */
     public void checkItem(final ToDoItem item) {
-        System.out.println(item.getId());
         if (mClient == null) {
             return;
         }
@@ -201,6 +200,18 @@ public class ToDoActivity extends Activity {
 
     }
 
+    // Clears all items from storage
+    public void clearList(){
+        try {
+            final List<ToDoItem> results = refreshItemsFromMobileServiceTable();
+            for (ToDoItem item: results) mToDoTable.delete(item);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Mark an item as completed in the Mobile Service Table
      *
@@ -225,8 +236,8 @@ public class ToDoActivity extends Activity {
         // Create a new item
         final ToDoItem item = new ToDoItem();
 
-        item.setText(mTextNewToDo.getText().toString() + ";" + mTextNewToDo2.getText().toString());
-        item.setComplete(false);
+        item.setUID(mTextNewToDo.getText().toString());
+        item.setGPS(mTextNewToDo2.getText().toString());
 
         // Insert the new item
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
@@ -288,17 +299,8 @@ public class ToDoActivity extends Activity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mAdapter.clear();
-
                             for (ToDoItem item : results) {
                                 mAdapter.add(item);
-//                                List<String> list = new ArrayList<String>(Arrays.asList(item.toString().split(";")));
-//                                ToDoItem UID = new ToDoItem();
-//                                UID.setText(list.get(0));
-//                                ToDoItem GPS = new ToDoItem();
-//                                GPS.setText(list.get(1));
-//                                mAdapter.add(UID);
-//                                mAdapter.add(GPS);
                             }
                         }
                     });

@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
-    
+
     <CheckBox
-        android:id="@+id/checkToDoItem"
+        android:id="@+id/UID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/checkbox_text" />
 
-</LinearLayout>
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/GPS"
+        android:layout_weight="0.75"
+        android:layout_alignBaseline="@+id/UID"
+        android:layout_alignBottom="@+id/UID"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="77dp"
+        android:layout_marginEnd="77dp" />
+
+</RelativeLayout>

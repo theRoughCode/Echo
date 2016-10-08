@@ -8,14 +8,20 @@ public class ToDoItem {
     /**
      * Item text
      */
-    @com.google.gson.annotations.SerializedName("text")
-    private String mText;
+    @com.google.gson.annotations.SerializedName("uid")
+    private String UID;
 
     /**
      * Item Id
      */
     @com.google.gson.annotations.SerializedName("id")
     private String mId;
+
+    /**
+     * GPS Location
+     */
+    @com.google.gson.annotations.SerializedName("gps")
+    private String GPS;
 
     /**
      * Indicates if the item is completed
@@ -38,13 +44,16 @@ public class ToDoItem {
     /**
      * Initializes a new ToDoItem
      *
-     * @param text
-     *            The item text
+     * @param uid
+     *            The item UID
+     * @param gps
+     *            The item GPS
      * @param id
      *            The item id
      */
-    public ToDoItem(String text, String id) {
-        this.setText(text);
+    public ToDoItem(String uid, String gps, String id) {
+        this.setUID(uid);
+        this.setGPS(gps);
         this.setId(id);
     }
 
@@ -52,17 +61,39 @@ public class ToDoItem {
      * Returns the item text
      */
     public String getText() {
-        return mText;
+        return (UID + ";" + GPS);
+    }
+
+    /**
+     * Returns the item text
+     */
+    public String getGPS() { return GPS; }
+
+    /**
+     * Returns the item text
+     */
+    public String getUID() {
+        return UID;
     }
 
     /**
      * Sets the item text
      *
-     * @param text
+     * @param uid
      *            text to set
      */
-    public final void setText(String text) {
-        mText = text;
+    public final void setUID(String uid) {
+        UID = uid;
+    }
+
+    /**
+     * Sets the item text
+     *
+     * @param gps
+     *            text to set
+     */
+    public final void setGPS(String gps) {
+        GPS = gps;
     }
 
     /**
