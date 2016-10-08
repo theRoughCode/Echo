@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">Lost Phone</string>
+    <string name="add_textbox_UID">Add UID</string>
+    <string name="add_textbox_GPS">Add GPS</string>
+    <string name="add_button_text">Add</string>
+    <string name="title">Lost Phone </string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="checkbox_text">Item Text</string>
+
+</resources>
